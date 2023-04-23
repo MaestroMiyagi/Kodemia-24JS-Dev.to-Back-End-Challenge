@@ -13,7 +13,6 @@ The backend is built with Node.js and the following frameworks and libraries:
 
 - Express.js: a popular web framework for Node.js
 - Mongoose: an Object Data Modeling (ODM) library for MongoDB and Node.js
-- Passport.js: an authentication middleware for Node.js
 - JSON Web Tokens (JWT): a standard for creating secure and verifiable access tokens
 
 ## API Documentation
@@ -22,11 +21,10 @@ The API documentation can be found [here](https://dev.to-clone-backend.herokuapp
 
 ## Installation
 
-1. Clone this repository: `git clone https://github.com/your-username/dev-to-clone-backend.git`
+1. Clone this repository: `git clone https://github.com/MaestroMiyagi/Kodemia-24JS-Dev.to-Back-End-Challenge`
 2. Install the dependencies: `npm install`
 3. Create a `.env` file at the root of the project and add the required environment variables (see `.env.example` for an example)
 4. Start the server: `npm start`
-
 
 ## License
 
