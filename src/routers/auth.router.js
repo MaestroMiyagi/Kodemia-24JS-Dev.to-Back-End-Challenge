@@ -1,10 +1,31 @@
+import express from 'express'
+import {login} from '../usecases/auth.usecase.js'
 
 
-server.post('/login', (request, response) => {
-    const user = { id: 123, nombre: 'usuario', correo: 'usuario@ejemplo.com' }
-    const token = auth.generateToken(req, res, user)
-  })
-  
-  server.get('/perfil', auth.authUser, (request, response) => {
-    res.json({ user: request.user })
-  })
+const router = express.Router()
+
+router.post('/login',async(request,response)=>{
+    try{
+        const { email, password } = request.body
+
+        const token = await login(email,password)
+
+        response.json({
+            success: true,
+            message:"Koder logged in",
+            data: {
+                token
+            }
+        })
+    }catch(error){
+        response
+            .status(400)
+            .json({
+                success: false,
+                message: "Error at get All Koders"
+            })
+
+    }
+})
+
+export default router
