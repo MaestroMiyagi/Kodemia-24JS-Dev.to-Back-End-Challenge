@@ -10,4 +10,5 @@ server.use(express.json());
 // Routers
 server.use('/users', routerUsers);
 
+
 export { server }
