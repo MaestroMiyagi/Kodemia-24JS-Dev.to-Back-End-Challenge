@@ -1,28 +1,26 @@
 import jwt from '../libs/jwt.js'
 
-function authUser(request, response, next) {
-  const token = request.headers.authorization?.split(' ')[1]
+const isAuth = (request, response, next)=>{
+    try {
+       
+        const authorization = request.headers.authorization || ""
+        
+        const token = authorization.replace("Bearer ", "") 
 
-  if (!token) {
-    return response.status(401).json({ mensaje: 'Validation token required' })
-  }
+        const isValidToken = jwt.verify(token);
 
-  try {
-    const payload = jwt.verify(token)
-    request.user = payload
-    next()
-  } catch (error) {
-    return response.status(401).json({ mensaje: 'Validation token invalid' })
-  }
+        if(!isValidToken) throw new Error("Unauthorized")
+
+        next()
+
+    } catch (error){
+        response
+        .status(401) 
+        .json({
+            success: false,
+            message: error.message
+        })
+    }
 }
 
-function generateToken(request, res) {
-  const payload = { id: request.user.id, name: request.user.name, email: request.user.email }
-  const token = jwt.sign(payload)
-  response.json({ token })
-}
-
-export default {
-  authUser,
-  generateToken
-}
+export { isAuth }
