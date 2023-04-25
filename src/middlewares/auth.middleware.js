@@ -1,4 +1,4 @@
-import jwt from '../lib/jwt'
+import jwt from '../libs/jwt.js'
 
 function authUser(request, response, next) {
   const token = request.headers.authorization?.split(' ')[1]
@@ -10,7 +10,7 @@ function authUser(request, response, next) {
   try {
     const payload = jwt.verify(token)
     request.user = payload
-    siguiente()
+    next()
   } catch (error) {
     return response.status(401).json({ mensaje: 'Validation token invalid' })
   }
