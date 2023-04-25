@@ -17,7 +17,7 @@ const postSchema = new mongoose.Schema({
     },
     date: {
         type : Date, 
-        default: Date.now 
+        default: Date.now
     },
     writer: [{
         type: Schema.Types.ObjectId,

@@ -41,7 +41,7 @@ router.get('/', async (request, response) => {
         .status(error.status || 400)
         .json({
             success: false,
-            message: 'Error at get All posts'
+            message: 'Error at getting all posts'
         })
         //customerror en libs
     }
