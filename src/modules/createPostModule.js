@@ -1,15 +1,19 @@
-const createPost = async (koderObject) => {
-    let response = await fetch(
-        `https://devto-challange-default-rtdb.firebaseio.com/.json`, {
+import { BASE_URL } from '../constants/urls.js'
+
+const createPost = async (postData) => {
+    let response = await fetch( `${BASE_URL}/posts`, {
         method: "POST",
-        body: JSON.stringify(koderObject)
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postData)
     })
-    let data = await response.json()
-    return data
+     let data = await response.json()
+     return data
 }
 
 const getElement = async () => {
-    let response = await fetch("https://devto-challange-default-rtdb.firebaseio.com/.json" );
+    let response = await fetch(`${BASE_URL}/posts`);
     let data = await response.json();
     return data;
 }

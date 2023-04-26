@@ -49,11 +49,11 @@ const createCardPostHome = (imgUrl, postTitle, userName = 'Anónimo', hashtags, 
   const ul = document.createElement("ul");
   ul.classList.add("list-tag__main");
 
-  hashtags.split(/[,\s]+/).forEach((hashtag) => {
-    const li = document.createElement("li");
-    li.textContent = `#${hashtag}`;
-    ul.appendChild(li);
-  });
+  // hashtags.split(/[,\s]+/).forEach((hashtag) => {
+  //   const li = document.createElement("li");
+  //   li.textContent = `#${hashtag}`;
+  //   ul.appendChild(li);
+  // });
 
   divC2.appendChild(h1);
   divC2.appendChild(ul);

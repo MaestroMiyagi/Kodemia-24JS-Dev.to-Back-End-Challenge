@@ -1,6 +1,6 @@
 import { progressBar } from "./modules/progressBarModule.js"
 import { createPost } from "./modules/createPostModule.js";
-import {storage, ref, uploadBytesResumable, getDownloadURL} from "./modules/firebase.js"
+//import {storage, ref, uploadBytesResumable, getDownloadURL} from "./modules/firebase.js"
 import { previewDOM } from "./modules/previewDOMModule.js";
 
 let fields = document.querySelectorAll("#post-form input")
@@ -74,7 +74,7 @@ let btnSendForm = document.querySelector("#btn-send")
 btnSendForm.addEventListener("click",async()=>{
     let { title } = data
     data["creationDate"] = new Date()
-    data["userName"] = JSON.parse(localStorage.getItem("token")).name;
+   // data["userName"] = JSON.parse(localStorage.getItem("token")).name;
 
     if(title) {
         await createPost(data)
