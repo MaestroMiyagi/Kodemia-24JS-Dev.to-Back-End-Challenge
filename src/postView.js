@@ -1,7 +1,6 @@
 import { getPostById, deleteByid } from "./modules/requestPostsView.js";
 import { isLogged } from "./modules/isLogged.js";
-const urlParams = new URLSearchParams(window.location.search);
-const id = urlParams.get('id');
+
 
 const imgDOM = document.querySelector("#img-post"); 
 const titleDOM = document.querySelector("#title-post"); 
@@ -26,23 +25,27 @@ if (!isLogged()) {
   });
 }
 
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get('id');
+
 const renderPost = async () => {
   let postObject = await getPostById(id);
-  let { image, title, userName, creationDate, tags, content } = postObject;
-  let formatDate = moment(creationDate).format('DD/MM/YYYY');
-  let timeAgo = moment(creationDate).fromNow();
+  console.log(postObject.data.posts)
+  let { title, user, date, content } = postObject.data.posts;
+  let formatDate = moment(date).format('DD/MM/YYYY');
+  let timeAgo = moment(date).fromNow();
 
-  imgDOM.src = image;
+  imgDOM.src = 'https://picsum.photos/200/100';
   titleDOM.textContent = title;
-  nameDOM.textContent = userName;
+  nameDOM.textContent = user;
   dateDOM.textContent = `${formatDate} (${timeAgo})`;
   detailsDOM.textContent = content
   //Hashtags DOM
-  tags.split(/[,\s]+/).forEach(tag => {
-    let li = document.createElement('li');
-    li.textContent = `#${tag}`;
-    ulDOM.appendChild(li);
-  })
+  // tags.split(/[,\s]+/).forEach(tag => {
+  //   let li = document.createElement('li');
+  //   li.textContent = `#${tag}`;
+  //   ulDOM.appendChild(li);
+  // })
 };
 
 renderPost();

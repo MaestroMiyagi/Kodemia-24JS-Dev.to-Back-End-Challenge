@@ -1,14 +1,15 @@
 import { values } from "./filter.js";
 import { deleteByid } from "./requestPostsView.js";
 
-const createCardPostHome = (imgUrl, postTitle, userName = 'Anónimo', hashtags, date, id, isLogged) => {
+const createCardPostHome = (post, isLogged) => {
+let { imgUrl, title, user, hashtags, date, _id} = post
 
   //CONTENEDOR PRINCIPAL
   let card = document.createElement('div');
   card.classList.add('card', 'shadow', 'mb-2')
   let imgCard = document.createElement('img');
   imgCard.classList.add('card-img-top');
-  imgCard.src = imgUrl;
+  imgCard.src = 'https://picsum.photos/200/100';
   let cardBody = document.createElement('div');
   cardBody.classList.add('card-body');
 
@@ -25,7 +26,7 @@ const createCardPostHome = (imgUrl, postTitle, userName = 'Anónimo', hashtags, 
   img.style.width = "40px";
   span.classList.add("d-flex", "flex-column", "justify-content-center");
   h5.classList.add("fs-6", "fw-bold", "m-0");
-  h5.textContent = userName; //Rgistrar nombre de usuario que inicio sesión
+  h5.textContent = user; //Rgistrar nombre de usuario que inicio sesión
   span2C1.classList.add("fw-light", "date");
   span2C1.textContent = `${moment(date).format('MMM D')} (${moment(date).fromNow()})`
 
@@ -41,8 +42,8 @@ const createCardPostHome = (imgUrl, postTitle, userName = 'Anónimo', hashtags, 
 
   const a = document.createElement("a");
   a.classList.add('fs-4');
-  a.href = `../views/postView.html?id=${id}`;
-  a.textContent = postTitle;
+  a.href = `./views/postView.html?id=${_id}`;
+  a.textContent = title;
 
   h1.appendChild(a);
 
@@ -97,7 +98,7 @@ const createCardPostHome = (imgUrl, postTitle, userName = 'Anónimo', hashtags, 
   if (isLogged()) {
     let btnDelete = document.createElement('button');
     btnDelete.classList.add('btn', 'btn-danger', 'py-0', 'mx-3');
-    btnDelete.setAttribute('id', id);
+    btnDelete.setAttribute('id', _id);
     btnDelete.textContent = 'Delete';
     btnDelete.addEventListener('click', async (e) => {
       e.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode.remove();
