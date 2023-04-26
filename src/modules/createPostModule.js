@@ -1,3 +1,7 @@
+
+
+
+
 import { BASE_URL } from "../constants/urls.js";
 
 const token = localStorage.getItem('token');
@@ -19,6 +23,12 @@ const createPost = async (postData) => {
     } catch (error) {
         alert('Something went wrong');
     }
+
 }
 
-export { createPost }
+const getElement = async () => {
+    let response = await fetch(`${BASE_URL}/posts`);
+    let data = await response.json();
+    return data;
+
+export { createPost, getElement }

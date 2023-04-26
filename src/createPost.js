@@ -1,4 +1,7 @@
 import { createPost } from "./modules/createPostModule.js";
+
+//import {storage, ref, uploadBytesResumable, getDownloadURL} from "./modules/firebase.js"
+
 import { previewDOM } from "./modules/previewDOMModule.js";
 
 let fields = document.querySelectorAll("form .form-control")
@@ -14,6 +17,7 @@ fields.forEach((field) => {
 
 
 let btnSendForm = document.querySelector("#btn-send")
+
 const validFields = (data) => {
     let { imageUrl, title, content, tags, authorId } = data;
     if (!imageUrl || !title || !content || !tags || !authorId) {

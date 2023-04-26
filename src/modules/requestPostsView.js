@@ -1,7 +1,13 @@
 import { BASE_URL } from "../constants/urls.js";
 
-const getPostById = async (id) => {
-  let response = await fetch(`${BASE_URL}/${id}`);
+const getPostById = async (_id) => {
+  let response = await fetch(`${BASE_URL}/posts/${_id}`, {
+    method: "GET",
+    headers: {
+      'Content-Type': 'application/json'
+  }
+  
+  });
   let data = response.json();
   return data;
 }
