@@ -4,8 +4,6 @@ let profileName = document.getElementById("profile_name")
 let bio = document.getElementById("profile_bio")
 let newData = {}
 
-localStorage.setItem("x", 'algo')
-//token local storage
 const token = localStorage.getItem("token")
 
 const tokenSession = () => {
@@ -24,7 +22,7 @@ const populateData = async () =>{
 try {
     const userData = getTokenPayload(token)
     let response = await fetch(
-        `http://localhost:8080/users/${userData.id}`, {
+        `http://localhost:8080/users/${userData._id}`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -56,7 +54,7 @@ const newDataPatch = async (newData) => {
     try {
         const userData = getTokenPayload(token)
         let response = await fetch(
-            `http://localhost:8080/users/${userData.id}`, {
+            `http://localhost:8080/users/${userData._id}`, {
             method: "PATCH",
             headers: {
                 Authorization: `Bearer ${token}`,

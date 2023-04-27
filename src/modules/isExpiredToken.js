@@ -1,9 +1,12 @@
 
 const isExpiredToken = (logged, logout) => {
-  const token = localStorage.getItem("token").split('.')[1];
-  const { exp } = JSON.parse(atob(token));
-  if (exp > moment().unix()) {
-    logged.forEach(item => item.classList.add("d-none"))
+  let token = localStorage.getItem("token");
+  let tokenInfo;
+  token ? tokenInfo = split('.')[1] : null;
+  tokenInfo ? tokenInfo = JSON.parse(atob(token)) : tokenInfo = false; 
+  
+  if (tokenInfo && tokenInfo.exp > moment().unix()) {
+    logged.forEach(item => item.classList.add('d-none'))
   } else {
     logout.forEach(item => item.classList.add("d-none"))
     localStorage.removeItem('token')
