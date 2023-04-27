@@ -1,12 +1,9 @@
-let logOutButton = document.getElementById('sign_out')
-
-
 const logOut = () => {
-    localStorage.removeItem('token')
-    window.open('../index.html', '_self')
+    let logOutButton = document.getElementById('sign_out')
+    logOutButton.addEventListener('click', () => {
+        localStorage.removeItem('token')
+        window.open('../index.html', '_self')
+    })
 }
 
-
-logOutButton.addEventListener('click', () => {
-    logOut()
-})
+export default logOut;
