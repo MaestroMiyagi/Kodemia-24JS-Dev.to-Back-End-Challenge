@@ -19,8 +19,8 @@ fields.forEach((field) => {
 let btnSendForm = document.querySelector("#btn-send")
 
 const validFields = (data) => {
-    let { imageUrl, title, content, tags, authorId } = data;
-    if (!imageUrl || !title || !content || !tags || !authorId) {
+    let { imageUrl, title, content, tags, user } = data;
+    if (!imageUrl || !title || !content || !tags || !user) {
         return false;
     }
     return true;
@@ -30,7 +30,7 @@ btnSendForm.addEventListener("click", async () => {
     const authorDataString = await localStorage.getItem('token').split('.')[1];
     const { _id } = await JSON.parse(atob(authorDataString));
     data["tags"] = await data["tags"].split(' ');
-    data["authorId"] = await _id;
+    data["user"] = await _id;
     if (validFields(data)) { 
         const postCreated = await createPost(data)
         console.log(postCreated);
