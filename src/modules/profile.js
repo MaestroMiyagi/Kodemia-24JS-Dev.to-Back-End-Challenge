@@ -1,13 +1,15 @@
 let formButton = document.getElementById('form__button')
 let fields = document.querySelectorAll("form .form-control")
 let profileName = document.getElementById("profile_name")
-let bio = document.getElementById("profile_bio")
+let bioDom = document.getElementById("profile_bio")
+let nameToEdit = document.getElementById("profile_name-edit")
+let bioToEdit = document.getElementById("profile_bio-edit")
 let newData = {}
 
 const token = localStorage.getItem("token")
 
 const tokenSession = () => {
-    token? null : window.open('../index.html', '_self')
+    token ? null : window.open('../index.html', '_self')
 }
 tokenSession()
 
@@ -18,24 +20,32 @@ const getTokenPayload = (token) => {
     return payloadParsed
 }
 
-const populateData = async () =>{
-try {
-    const userData = getTokenPayload(token)
-    let response = await fetch(
-        `http://localhost:8080/users/${userData._id}`, {
+const populateData = async () => {
+    try {
+        const userData = getTokenPayload(token)
+        let response = await fetch(
+            `http://localhost:8080/users/${userData._id}`, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${token}`
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         })
         let responseJson = await response.json()
+        let { name, bio } = responseJson.data
         localStorage.setItem("data", JSON.stringify(responseJson.data))
-        profileName.textContent = responseJson.data.name
-        bio.textContent = responseJson.data.bio
+
+        profileName != null ? profileName.textContent = name : null; 
+        bioDom != null ? bioDom.textContent = bio : null; 
+
+        nameToEdit != null ? nameToEdit.value = name : null;
+        bioToEdit != null ? bioToEdit.value = bio : null;
+        
         return responseJson
-} catch (error) {
-    alert('Opss! someting went wrong')
-}
+    } catch (error) {
+        console.log(error);
+        // alert('Opss! someting went wrong')
+    }
 }
 populateData()
 
@@ -63,16 +73,18 @@ const newDataPatch = async (newData) => {
         })
         let data = await response.json()
         return data
-    } catch  (error) {
+    } catch (error) {
         alert('Opsss something went wrong')
     }
 }
 
 
-formButton.addEventListener("click", () => {
+formButton != null 
+? formButton.addEventListener("click", () => {
     newDataPatch(newData)
     window.open('../index.html', '_self')
 })
+: null;
 
 /////////////
 
