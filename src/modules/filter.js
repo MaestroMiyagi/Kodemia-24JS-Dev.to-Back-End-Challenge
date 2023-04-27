@@ -5,17 +5,15 @@ import {isLogged} from "./isLogged.js"
 
 
 //Filtar por barra de navegación 
-let wordslower = []
 let btn = document.getElementById("posts-home")
 
 const values = async ()=>{
     let allPosts = await getElement()
     document.querySelectorAll('#posts-home .card').forEach(card => card.remove())
     for( let post of allPosts.data.posts){
-        let {title} = post
+        // let {title} = post
+        console.log(post);
         btn.appendChild(createCardPostHome(post, isLogged))
-        
-        wordslower.push(title.toLowerCase())//almace
     }
     document.getElementById('relevant').addEventListener('click', values)
 }

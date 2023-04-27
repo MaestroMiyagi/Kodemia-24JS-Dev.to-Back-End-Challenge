@@ -1,15 +1,14 @@
-import { values } from "./filter.js";
 import { deleteByid } from "./requestPostsView.js";
 
-const createCardPostHome = (post, isLogged) => {
-let { imgUrl, title, user, hashtags, date, _id} = post
+const createCardPostHome = (post, isLogged, btnhandler) => {
+let { imageUrl, title, user, tags, date, _id} = post
 
   //CONTENEDOR PRINCIPAL
   let card = document.createElement('div');
   card.classList.add('card', 'shadow', 'mb-2')
   let imgCard = document.createElement('img');
   imgCard.classList.add('card-img-top');
-  imgCard.src = 'https://picsum.photos/200/100';
+  imgCard.src = imageUrl;
   let cardBody = document.createElement('div');
   cardBody.classList.add('card-body');
 
@@ -26,7 +25,7 @@ let { imgUrl, title, user, hashtags, date, _id} = post
   img.style.width = "40px";
   span.classList.add("d-flex", "flex-column", "justify-content-center");
   h5.classList.add("fs-6", "fw-bold", "m-0");
-  h5.textContent = user; //Rgistrar nombre de usuario que inicio sesión
+  h5.textContent = user.name; //Rgistrar nombre de usuario que inicio sesión
   span2C1.classList.add("fw-light", "date");
   span2C1.textContent = `${moment(date).format('MMM D')} (${moment(date).fromNow()})`
 
@@ -50,11 +49,11 @@ let { imgUrl, title, user, hashtags, date, _id} = post
   const ul = document.createElement("ul");
   ul.classList.add("list-tag__main");
 
-  // hashtags.split(/[,\s]+/).forEach((hashtag) => {
-  //   const li = document.createElement("li");
-  //   li.textContent = `#${hashtag}`;
-  //   ul.appendChild(li);
-  // });
+  tags.forEach((tag) => {
+    const li = document.createElement("li");
+    li.textContent = `#${tag}`;
+    ul.appendChild(li);
+  });
 
   divC2.appendChild(h1);
   divC2.appendChild(ul);
