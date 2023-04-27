@@ -12,7 +12,7 @@ fields.forEach(field => {
 })
 
 function validateFields(data) {
-  if (!data.email || !data.password || !data.name) {
+  if (!data.email || !data.password) {
     fields.forEach(field => {
       field.value
         ? field.classList.remove("is-invalid")
@@ -26,17 +26,18 @@ function validateFields(data) {
 formButton.addEventListener("click", async () => {
   if (!validateFields(credentials)) return alert('Please complete the fields');
   try {
-    const response = await fetch(`${BASE_URL}/users/signup`, {
+    const response = await fetch(`${BASE_URL}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(credentials)
     })
-    const userCreated = await response.json();
-    await localStorage.setItem('token', userCreated.token);
+    const userLoggined = await response.json();
+    await localStorage.setItem('token', userLoggined.data.token);
     window.open('../index.html', '_self');
   } catch (error) {
+
     alert('Oops! Something went wrong, try again')
   }
 })

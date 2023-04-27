@@ -1,8 +1,9 @@
+
 {
-  "name": "kodemia-24js-dev.to-back-end-challenge",
+  "name": "frontend-dev.to",
   "version": "1.0.0",
-  "description": "This repository contains the backend code for a clone of the dev.to website. The main focus is to provide the following features:",
-  "main": "index.js",
+  "description": "This repository contains the frontend code for a clone of the dev.to website. The main focus is to provide the following features:",
+  "main": "appserver.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
