@@ -12,7 +12,6 @@ const values = async ()=>{
     document.querySelectorAll('#posts-home .card').forEach(card => card.remove())
     for( let post of allPosts.data.posts){
         // let {title} = post
-        console.log(post);
         btn.appendChild(createCardPostHome(post, isLogged))
     }
     document.getElementById('relevant').addEventListener('click', values)

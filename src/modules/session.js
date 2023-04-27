@@ -37,7 +37,7 @@ formButton.addEventListener("click", async () => {
     await localStorage.setItem('token', userLoggined.data.token);
     window.open('../index.html', '_self');
   } catch (error) {
-    console.log(error);
+
     alert('Oops! Something went wrong, try again')
   }
 })

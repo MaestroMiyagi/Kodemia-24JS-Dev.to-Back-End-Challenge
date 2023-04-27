@@ -34,7 +34,7 @@ try {
         bio.textContent = responseJson.data.bio
         return responseJson
 } catch (error) {
-    console.log(error)
+    alert('Opss! someting went wrong')
 }
 }
 populateData()
@@ -44,7 +44,6 @@ fields.forEach(field => {
         let property = event.target.name
         let value = event.target.value
         newData[property] = value
-        console.log(newData)
     })
 })
 
@@ -65,7 +64,7 @@ const newDataPatch = async (newData) => {
         let data = await response.json()
         return data
     } catch  (error) {
-        console.log(error)
+        alert('Opsss something went wrong')
     }
 }
 

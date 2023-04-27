@@ -33,7 +33,6 @@ btnSendForm.addEventListener("click", async () => {
     data["user"] = await _id;
     if (validFields(data)) { 
         const postCreated = await createPost(data)
-        console.log(postCreated);
         window.open("../index.html","_self")
     } else {
         alert("Full the field")
